@@ -38,6 +38,8 @@
       <p>Testing Text</p>
     </div>
   </div>
+
+
   <style>
     .cards {
       display: grid;
@@ -73,7 +75,18 @@
       align-items: center;
       opacity: 0;
       pointer-events: none;
+      transition: opacity 0.2s;
     }
+
+    .modal-outer.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-outer img {
+      width: 100%;
+    }
+
 
     .modal-inner {
       max-width: 600px;
