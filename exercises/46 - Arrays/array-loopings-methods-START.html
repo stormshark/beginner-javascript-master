@@ -129,6 +129,36 @@
       Looping Methods
     */
 
+
+    function addArms(faces) {
+      return `👏 ${faces} 👏`;
+    }
+
+    const toys = faces.map(addArms);
+    console.log(toys);
+
+    const names = ['Aly', 'mrv', 'pag', 'yus', 'Gok'];
+
+    const newNames = names.map((values) => `${values[0].toUpperCase() + values.slice(1)} Yavuz`);
+
+
+    const newNames2 = names
+      .map(capitalizer)
+      .map(lastNameAdder);
+
+    function capitalizer(input) {
+      return input[0].toUpperCase() + input.slice(1);
+    }
+
+    function lastNameAdder(input2) {
+      return input2 + ' Yav';
+    }
+
+
+    console.log(newNames);
+    console.log(newNames2);
+
+
   </script>
 </body>
 
