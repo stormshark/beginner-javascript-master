@@ -13,6 +13,124 @@
     // Grab all the text from a web page
     // Count how many times each letter and number occurs
 
+    const text = `İsteğe bağlı tanımlama bilgilerini, sosyal medya bağlantıları gibi web sitelerimizde deneyiminizi iyileştirmek ve çevrimiçi etkinliğinize dayalı olarak kişiselleştirilmiş reklamlar görüntülemek için kullanırız. İsteğe bağlı tanımlama bilgilerini reddederseniz yalnızca size hizmetleri sağlamak için gerekli tanımlama bilgileri kullanılır. Sayfanın altındaki 'Tanımlama Bilgilerini Yönet' bağlantısına tıklayarak seçiminizi değiştirebilirsiniz. Gizlilik Bildirimi Üçüncü Taraf Tanımlama Bilgileri
+Kabul et Reddet Tanımlama bilgilerini yönet
+Ana içeriğe atla
+Microsoft
+Destek
+Microsoft 365 Office Windows Surface Xbox Microsoft 365’i satın alın
+Tüm Microsoft
+Ara 
+
+Smartera Yazılım için hesap yöneticisi
+Smartera Yazılım
+Ürünler 
+ 
+Cihazlar 
+ 
+Yenilikler
+ 
+Hesap ve faturalama 
+ 
+Şablonlar
+ 
+Daha fazla destek 
+Word Yardımı'ndaki "Lorem ipsum dolor sit amet" metninin açıklaması
+™zet
+"Lorem ipsum dolor sit amet consectetuer" ifadesi gerçekte Microsoft Word çevrimiçi Yardımı'nda görüntülenir. Bu ifade anlamlı bir Latince deyim gibi görünür. Gerçekte hiçbir anlamı yoktur.
+
+Daha fazla bilgi
+Anlamlı bir metin gibi görünen bu ifade, yazı tiplerini göstermek amacıyla matbaacılar tarafından birkaç yüzyıldır kullanılmaktadır. İçerdiği harfler ve bu birleşimlerin harf aralıkları, yazı tipinin ağırlığını, tasarımını ve diğer önemli özelliklerini açıkça gösterdiği için tercih edilmektedir.
+
+
+"Before & After" dergisinin 1997'te yayımlanan bir sayısında "Lorem ipsum ..." ifadesinin, İ.Ö. 45 yılında Cicero tarafından yazılan etik teorisi ile ilgili bilimsel bir inceleme olan de Finibus Bonorum et Malorum metninde geçen bir bölümün uyarlanmasıyla elde edilen Latince bir ifade olduğu belirlenmiştir. "Lorem ipsum ..." bölümü, "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit ..." şeklindeki metinden uyarlanmıştır ve "Acıyı seven veya onun peşinden koşan ya da arzulayan kimse yoktur, çünkü o acıdır..." olarak çevrilebilir.
+
+
+1500'lü yıllarda, bir matbaacı Cicero'nun bu metnini alarak baskı örneklerinin yer aldığı bir sayfa yaptı. O günden beri, Latince'ye benzeyen bu metin matbaacılıkta sahte bir standart metin olarak kullanılmaktadır. Elektronik yayımcılıktan önce, grafik tasarımcıların metni gösteren kıvrımlı çizgilerle desenler oluşturmaları gerekiyordu. "Lorem ipsum" metni basılan yapışkan sayfalarda, metnin nereye gireceği açıkça görülüyordu.
+
+Referanslar
+"Before & After," Cilt 4, sayı 1.
+"MicroNews," Cilt 13, sayı 19.
+
+Facebook LinkedIn E-posta
+Daha fazla yardıma mı ihtiyacınız var?
+Size nasıl yardımcı olabiliriz?
+
+Yeteneklerinizi geliştirin
+EĞİTİMLERİ KEŞFEDİN 
+Yeni özellikleri ilk olarak siz edinin
+MİCROSOFT INSİDER 'A KATILIN  
+
+Ücretsiz olarak denemeniz için Microsoft 365’e davet edildiniz
+Şimdi kilidini açın
+
+Bu bilgi yardımcı oldu mu? Evet Hayır
+×
+Yenilikler
+Microsoft 365
+Windows 11 uygulamaları
+Microsoft Store
+Hesap profili
+İndirme Merkezi
+Microsoft Store Desteği
+İadeler
+Sipariş izleme
+Eğitim
+Eğitimde Microsoft
+Öğrenciler için Office
+Okullar için Office 365
+Eğitimde Microsoft Azure
+Kurumsal
+Azure
+AppSource
+Otomotiv
+Kamu
+Sağlık
+Üretim
+Finansal hizmetler
+Perakende
+Geliştirici
+Microsoft Visual Studio
+Geliştirici Merkezi
+Kanal 9
+Microsoft 365 Geliştirici Merkezi
+Microsoft 365 Geliştirici Programı
+Şirket
+Kariyer Fırsatları
+Microsoft Hakkında
+Microsoft'ta Gizlilik
+Yatırımcılar
+Güvenlik
+Türkçe (Türkiye)
+Microsoft'a başvurun Gizlilik Tanımlama bilgilerini yönetin Kullanım Şartları 
+icari Markalar Reklamlarımız hakkında © Microsoft 2022`;
+
+    //console.log(text);
+
+    const onlytextandNumber = text
+      .toLowerCase()
+      .match(/[a-z]|[A-Z]|[0-9]/g);
+
+    const test = Object.values(onlytextandNumber);
+
+    function reducer(prev, current) {
+      prev[current] ? prev[current]++ : prev[current] = 1;
+      return prev;
+    }
+
+    let countedLetters = test.reduce(reducer, {});
+    console.log(countedLetters);
+
+
+    const convertedList = Object.entries(countedLetters);
+    console.log(convertedList.sort(descendingSorting));
+
+
+
+    function descendingSorting(first, second) {
+      return second[1] - first[1];
+    }
+
 
   </script>
 </body>

@@ -159,6 +159,27 @@
     console.log(newNames2);
 
 
+    const cleanPeople = people.map(function (person) {
+      // console.log(person);
+
+      const personBirthday = new Date(person.birthday).getTime();
+      // console.dir(personBirthday);
+
+      const currentDate = Date.now();
+      // console.log(currentDate);
+
+      const dateDifference = Math.floor((currentDate - personBirthday) / 31536000000);
+      // console.log(dateDifference);
+
+      return {
+        age: dateDifference,
+        name: `${person.names.first} ${person.names.last}`
+      }
+
+    });
+
+    console.log(cleanPeople);
+
   </script>
 </body>
 
