@@ -45,7 +45,7 @@ function drawFace(face) {
 }
 
 function censor ({boundingBox:face}) {
-// draw smmal face
+// draw small face
 
 faceCtx.imageSmoothingEnabled=false;
 faceCtx.clearRect(0,0,faceCanvas.width,faceCanvas.height);
@@ -60,7 +60,7 @@ faceCtx.drawImage(
     pixelPickSize,
     pixelPickSize
     );
-// take that face baks and draw it back normal size
+// take that face mask and draw it back normal size
 
 faceCtx.drawImage(
     faceCanvas,
