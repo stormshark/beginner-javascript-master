@@ -7,7 +7,6 @@ let itemList=[];
 
 addButton.addEventListener('click',createList);
 shoppingList.addEventListener('click',removeAnItem);
-
 retrieveData();
 
 
@@ -33,7 +32,7 @@ function display () {
         `<li class="shopping-item">
             <input type="checkbox">
             <span class="itemName">${e.name}</span>
-            <button class="closeButton">&times</button>   
+            <button class="closeButton" value=${e.id}>&times</button>   
         </li>`).join('');
     shoppingList.innerHTML = cleanList;
 }
@@ -48,8 +47,13 @@ function retrieveData() {
 
 function removeAnItem(id) {
     id.preventDefault();
-    console.log("yeni ekleleneşeş g,rd,");
-    id
+    selectedItem = id.target.value;
+    if (selectedItem){
+        let newList = itemList.filter(finder => finder.id != selectedItem);
+        itemList=newList;
+        replicateData();
+        display ()
+    }
 
     //itemList.find(finder => finder.id === id );
 }
