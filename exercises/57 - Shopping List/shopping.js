@@ -4,10 +4,9 @@ const enteredItemText =  document.querySelector('.listTextField');
 const shoppingList =  document.querySelector('.list');
 let itemList=[];
 
-
+shoppingList.addEventListener('itemsChanged',display);
 addButton.addEventListener('click',createList);
 shoppingList.addEventListener('click',removeAnItem);
-
 retrieveData();
 
 
@@ -22,38 +21,50 @@ function createList(event) {
         }
     
     itemList.push(item);
-    display ()
-    replicateData();    
+    // display ()
+    // replicateData();    
     enteredItemText.value ='';
+    shoppingList.dispatchEvent(new CustomEvent("itemsChanged"));
 } 
 
 function display () {
-    console.log("buraya geldi")
     let cleanList= itemList.map(e => 
         `<li class="shopping-item">
             <input type="checkbox">
             <span class="itemName">${e.name}</span>
-            <button class="closeButton">&times</button>   
+            <button class="closeButton" value=${e.id}>&times</button>   
         </li>`).join('');
     shoppingList.innerHTML = cleanList;
 }
 
 function retrieveData() {
     let retrievedData =  JSON.parse(localStorage.getItem("lsItems"));
+    console.log("trst");
     if(retrievedData) 
+    console.log("trst2");
+
         {itemList.push(...retrievedData);
-          display();
+         // display();
+         debugger
+         shoppingList.dispatchEvent(new CustomEvent("itemsChanged"));
         }
 }
 
+
 function removeAnItem(id) {
     id.preventDefault();
-    console.log("yeni ekleleneşeş g,rd,");
-    id
+    selectedItem = id.target.value;
+    if (selectedItem){
+        let newList = itemList.filter(finder => finder.id != selectedItem);
+        itemList=newList;
+       // replicateData();
+        shoppingList.dispatchEvent(new CustomEvent("itemsChanged")); 
+ }
 
     //itemList.find(finder => finder.id === id );
 }
 
+shoppingList.addEventListener("itemsChanged",replicateData);
 function replicateData(){
     localStorage.setItem("lsItems",JSON.stringify(itemList));
 }

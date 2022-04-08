@@ -72,12 +72,7 @@ function deleteItem(id) {
   list.dispatchEvent(new CustomEvent('itemsUpdated'));
 }
 
-function markAsComplete(id) {
-  console.log('Marking as complete', id);
-  const itemRef = items.find(item => item.id === id);
-  itemRef.complete = !itemRef.complete;
-  list.dispatchEvent(new CustomEvent('itemsUpdated'));
-}
+
 
 shoppingForm.addEventListener('submit', handleSubmit);
 list.addEventListener('itemsUpdated', displayItems);
