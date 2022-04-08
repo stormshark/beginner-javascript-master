@@ -9,6 +9,41 @@
 </head>
 
 <body>
+  <button class="one"> button1</button>
+  <button class="two"> button2</button>
+  <script>
+
+    const myDate = new Date('August 07, 1983');
+    // console.log(myDate)
+
+    function Pizza(toppings = [], customer) {
+      //console.log("ygy was here!");
+      console.log(this);
+      this.toppings = toppings;
+      this.customer = customer;
+      this.Id = Math.random();
+
+    }
+
+    const tester = new Pizza(['cheese,pepperoni,pickle'], 'ygy');
+    const tester2 = new Pizza(['cheese,mushroom'], 'ygy');
+
+
+    // const button1 = document.querySelector('.one');
+    // const button2 = document.querySelector('.two');
+
+    // function tellMeAboutTheButton() {
+    //   console.log(this);
+    // }
+
+    // button1.addEventListener('click', tellMeAboutTheButton);
+    // button2.addEventListener('click', tellMeAboutTheButton);
+
+
+
+  </script>
+
+
 
 </body>
 
