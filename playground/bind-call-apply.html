@@ -9,7 +9,48 @@
 </head>
 
 <body>
+  <script>
+    const person = {
+      name: "YGY",
+      sayHi: function () {
+        console.log(`halle ${this.name}`);
+      }
 
+    }
+
+    const merry = { name: "Merry" };
+
+    const joseph = { lastName: "sad" };
+
+    const sayHi = person.sayHi.bind(joseph);
+
+
+    const bill = {
+      total: 1000,
+      taxCalculate: function (taxRate) {
+        return (this.total + (this.total * taxRate));
+      }
+    }
+
+    const test2 = bill.taxCalculate(0.5);
+
+    console.log(test2);
+
+    const test3 = bill.taxCalculate;
+    const test4 = bill.taxCalculate.bind(bill);
+    const test5 = bill.taxCalculate.bind({ total: 2000 });
+
+    // ready and reserved for you to use
+    const test6 = bill.taxCalculate.bind({ total: 2000 }, 0.7);
+    console.log(test6);
+
+    // call it and run it for me
+    const test7 = bill.taxCalculate.call({ total: 2000 }, 0.7);
+
+    // exactly same as call but only different is we can pass arguments as an array.
+    const test8 = bill.taxCalculate.apply({ total: 2000 }, [0.7]);
+
+  </script>
 </body>
 
 </html>
