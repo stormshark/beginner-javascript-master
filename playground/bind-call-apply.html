@@ -50,6 +50,18 @@
     // exactly same as call but only different is we can pass arguments as an array.
     const test8 = bill.taxCalculate.apply({ total: 2000 }, [0.7]);
 
+
+    function greet() { console.log('HEllo') };
+
+    sayHi2();
+    greet();
+
+    function sayHi2() {
+      setTimeout(() => { console.log('Hi'); }, 1000)
+      console.log("Hi Again");
+    }
+
+
   </script>
 </body>
 
