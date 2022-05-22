@@ -32,3 +32,15 @@ const currencies = {
   ZAR: 'South African Rand',
   EUR: 'Euro',
 };
+
+const currencyCombos = document.querySelectorAll('select');
+const currencyKeyValue = Object.entries(currencies);
+
+
+ // "<option value=\"" + opt + "\">" + opt + "</option>"
+
+let a = currencyKeyValue
+                        .map( ([currencyKey,currencyName] ) =>
+                        `<option value="${currencyKey}">${currencyKey} - ${currencyName}</option>`
+                            )
+                       .join('');
