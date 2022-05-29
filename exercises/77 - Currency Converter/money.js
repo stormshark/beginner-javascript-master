@@ -1,3 +1,4 @@
+
 const currencies = {
   USD: 'United States Dollar',
   AUD: 'Australian Dollar',
@@ -33,54 +34,41 @@ const currencies = {
   EUR: 'Euro',
 };
 
-
 const currencyFromCombo = document.querySelector('[name="from_currency"]');
 const currencyToCombo = document.querySelector('[name="to_currency"]');
 const currencyKeyValue = Object.entries(currencies);
 const to_amountText = document.querySelector('.to_amount');
+const ratesByBase = {};
+
+const firstcomboValue = currencyFromCombo.addEventListener('change', e => 
+{
+  e.preventDefault();
+ return getCurrencyRates(e.currentTarget.value);
+ })
+
+
+currencyFromCombo.addEventListener('change', e => 
+{
+  e.preventDefault();
+  getCurrencyRates(e.currentTarget.value);
+ })
 
 //fill Events
-//let firstComboResult = currencyFromCombo.addEventListener('change', getCurrencyRates("USD"));
-//currencyToCombo.addEventListener('change', test => console.log("inside second combo"));
 
+//currencyToCombo.addEventListener('change', test => console.log("inside second combo"));
+// if(!ratesByBase[TRY]) {
+//   const rates = await getCurrencyRates("TRY")  
+//   ratesByBase[TRY]=rates;  
+// }
 
 
 let currencyList = currencyKeyValue
-                        .map( ([currencyKey,currencyName] ) =>
-                        `<option value="${currencyKey}">${currencyKey} - ${currencyName}</option>`
-                            )
+                       .map( ([currencyKey,currencyName] ) =>`<option value="${currencyKey}">${currencyKey} - ${currencyName}</option>`)
                        .join('');
-
-
 currencyFromCombo.innerHTML = currencyList;
-
-
-// TODO #1 remove selected one from second combo
 currencyToCombo.innerHTML = currencyList;
 
-
-// Call after first one and add it to the URL
-
 // TODO #2 how to pass variable and stop event listener for first time ??????
-async function getCurrencyRates(_baseCurrency) {
-baseCurrency =_baseCurrency;
- 
-var myHeaders = new Headers();
-myHeaders.append("apikey", "Xys0dskeXw9MJLt1qdtWPGVwq6iu1EwG");
-var requestOptions = {
-  method: 'GET',
-  redirect: 'follow',
-  headers: myHeaders
-};
-
-const requestResult = await fetch(`https://api.apilayer.com/exchangerates_data/latest?base=${baseCurrency}`, requestOptions)
-  .catch(error => console.log('error', error));
-
-let result = await requestResult.json();
-let conversionRate= await result.rates.TRY;
-console.log("turkish lira rate: "+ conversionRate);
-return conversionRate;
-}
 
 //Calculate based on second on 
 const inputNumber = document.querySelector('input');
@@ -91,10 +79,33 @@ async function calculateCurrencyChange(e) {
 e.preventDefault();
 const enteredValue= e.currentTarget.value;
 const conversionRate = await getCurrencyRates("USD");
+console.log(conversionRate);
 to_amountText.textContent= enteredValue * conversionRate ;
-
 }
 
+async function getCurrencyRates(_baseCurrency) {
+  var myHeaders = new Headers();
+  myHeaders.append("apikey", "Xys0dskeXw9MJLt1qdtWPGVwq6iu1EwG");
+  var requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+    headers: myHeaders
+  };
+  
+  const requestResult = await fetch(`https://api.apilayer.com/exchangerates_data/latest?base=${_baseCurrency}`, requestOptions)
+    .catch(error => console.log('error', error));
+  
+ console.log(typeof _baseCurrency);
+ console.log(_baseCurrency);
+
+  let result = await requestResult.json();
+  console.log(result);
+
+  let temp= await result.rates;
+  let conversionRate=temp[_baseCurrency];
+  console.log("turkish lira rate: "+ conversionRate);
+  return conversionRate;
+  }
 // result 
 
 
@@ -131,5 +142,4 @@ to_amountText.textContent= enteredValue * conversionRate ;
 //     ['touchstart','click'],
 //     handler,
 //     false);
-
 
